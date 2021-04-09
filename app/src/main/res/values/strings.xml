@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pareja_Victor_Datos_2</string>
+    <string name="create_button">Crear</string>
+    <string name="shopping_list_hint">Nombre</string>
+    <string name="delete_all">Eliminar todas</string>
+    <string name="collaborators_label">Colaboradores</string>
+</resources>
