@@ -26,9 +26,9 @@ public class BookingRepository {
         BookingDatabase.dbExecutor.execute(() -> mBookingListDao.insert(booking));
     }
 
-    public void deleteBooking(String id) {
+    public void deleteBooking(Booking booking) {
         BookingDatabase.dbExecutor.execute(
-                () -> mBookingListDao.deleteBooking(id)
+                () -> mBookingListDao.deleteBooking(booking)
         );
     }
 

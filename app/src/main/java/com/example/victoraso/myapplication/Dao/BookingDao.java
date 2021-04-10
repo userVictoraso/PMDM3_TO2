@@ -26,8 +26,8 @@ public interface BookingDao {
     @Query("SELECT * FROM booking_list WHERE id = :id")
     public abstract LiveData<Booking> booking(String id);
 
-    @Query("DELETE FROM booking_list WHERE id = :id")
-    public abstract void deleteBooking(String id);
+    @Delete
+    void deleteBooking(Booking booking);
 
     @Update
     public void updateBooking(Booking booking);

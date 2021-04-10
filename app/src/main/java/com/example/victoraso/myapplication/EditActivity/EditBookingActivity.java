@@ -51,7 +51,6 @@ public class EditBookingActivity extends AppCompatActivity {
         showHour();
         setupUpdateButton();
 
-        //TODO: TENEMOS QUE BORRAR LA ENTRADA DE LA BD Y AÑADIR UN NUEVO OBJETO; VA A SER MAS FÁCIL
     }
 
     private void subscribeToUi() {
@@ -64,7 +63,6 @@ public class EditBookingActivity extends AppCompatActivity {
     private void setupUpdateButton() {
         binding.createButton.setOnClickListener(
                 view -> {
-
                     // Obtener valor del campo de texto
                     String name = binding.nameRiderField.getText().toString();
                     String phone = binding.phoneField.getText().toString();

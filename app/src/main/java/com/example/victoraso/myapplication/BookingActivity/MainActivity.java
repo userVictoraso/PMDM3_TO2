@@ -1,9 +1,11 @@
 package com.example.victoraso.myapplication.BookingActivity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -82,14 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onLongClick(View view, int position) {
-                        /*final Web web = webArrayList.get(position);
+                        final Booking booking = mViewModel.getBookings().getValue().get(position);
                         AlertDialog dialog = new AlertDialog
-                                .Builder(MainActivity3.this)
+                                .Builder(MainActivity.this)
                                 .setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        crearRegistroActivity.eliminar(web, getBaseContext());
-                                        refreshList();
+                                        mViewModel.delete(booking);
                                     }
                                 })
                                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -99,9 +100,10 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 })
                                 .setTitle("Confirmar")
-                                .setMessage("¿Deseas eliminar la web " + web.getNombre() + "?")
+                                .setMessage("¿Deseas eliminar la reserva de " + booking.getHorseRider() +
+                                        " para las " + booking.getHour() + "horas con fecha " + booking.getDate() + "?")
                                 .create();
-                        dialog.show();*/
+                        dialog.show();
                     }
                 }));
     }
