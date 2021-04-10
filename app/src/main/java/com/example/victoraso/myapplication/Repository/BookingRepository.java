@@ -36,7 +36,7 @@ public class BookingRepository {
         BookingDatabase.dbExecutor.execute(() -> mBookingListDao.updateBooking(booking));
     }
 
-    public LiveData<Booking> getBooking(String id) {
+    public LiveData<Booking> getBooking(int id) {
         return mBookingListDao.booking(id);
     }
 }

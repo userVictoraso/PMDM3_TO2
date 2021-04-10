@@ -15,7 +15,7 @@ public class EditBookingViewModel extends AndroidViewModel {
 
     private final BookingRepository mRepository;
 
-    private final MutableLiveData<String> mBookingId = new MutableLiveData<>();
+    private final MutableLiveData<Integer> mBookingId = new MutableLiveData<>();
 
     private LiveData<Booking> mBooking;
 
@@ -28,10 +28,10 @@ public class EditBookingViewModel extends AndroidViewModel {
         );
     }
 
-    public void start(String id) {
-        if(id.equals(mBookingId.getValue())) {
-            return;
-        }
+    public void start(int id) {
+        //if(id.equals(mBookingId.getValue())) {
+         //   return;
+        //}
         mBookingId.setValue(id);
     }
 

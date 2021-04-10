@@ -24,12 +24,12 @@ public interface BookingDao {
 
     @Transaction
     @Query("SELECT * FROM booking_list WHERE id = :id")
-    public abstract LiveData<Booking> booking(String id);
+    public abstract LiveData<Booking> booking(int id);
 
     @Delete
     void deleteBooking(Booking booking);
 
-    @Update
-    public void updateBooking(Booking booking);
+    @Update(entity = Booking.class)
+    void updateBooking(Booking booking);
 
 }

@@ -26,6 +26,7 @@ public class EditBookingActivity extends AppCompatActivity {
     private final Calendar myCalendar = Calendar.getInstance();
     private ActivityEditBookingBinding binding;
     private EditBookingViewModel mViewModel;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +40,13 @@ public class EditBookingActivity extends AppCompatActivity {
         mViewModel = new ViewModelProvider(this, factory)
                 .get(EditBookingViewModel.class);
 
-        String id = getIntent().getStringExtra("id");
+        String idExtra = getIntent().getStringExtra("id");
         Toast.makeText(this, "ID: " + id, Toast.LENGTH_LONG).show();
-        if (id.equals(null)) {
+        if (idExtra.equals(null)) {
             finish();
         }
+
+        id = Integer.parseInt(idExtra);
 
         mViewModel.start(id);
         subscribeToUi();
@@ -71,21 +74,19 @@ public class EditBookingActivity extends AppCompatActivity {
                     String hour = binding.hourField.getText().toString();
                     String comentary = binding.comentaryField.getText().toString();
 
-                    String id = date.concat(hour);
-
                     // Ignorar acción si hay 0 caracteres
                     if (name.isEmpty() || phone.isEmpty() || horseName.isEmpty() || date.isEmpty() || hour.isEmpty() || comentary.isEmpty()) {
                         Toast.makeText(this, "Rellena los campos", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
-
                     //CREAR OBJETO BOOKING
-                    Toast.makeText(this, date + hour, Toast.LENGTH_SHORT).show();
-
                     Booking bookingUpdate = new Booking(name, phone, horseName, date, Integer.parseInt(hour), comentary);
+                    bookingUpdate.setId(id);
 
                     mViewModel.update(bookingUpdate);
+
+                    Toast.makeText(this, mViewModel.getmBooking().getValue().getHorseName(), Toast.LENGTH_SHORT).show();
 
                     // Ir a la lista
                     finish();
@@ -107,7 +108,6 @@ public class EditBookingActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
