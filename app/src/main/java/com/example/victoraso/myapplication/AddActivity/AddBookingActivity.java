@@ -108,7 +108,7 @@ public class AddBookingActivity extends AppCompatActivity {
                     String hour = binding.hourField.getText().toString();
                     String comentary = binding.comentaryField.getText().toString();
 
-                    String id = phone.concat(date).concat(hour);
+                    String id = date.concat(hour);
 
                     // Ignorar acción si hay 0 caracteres
                     if (name.isEmpty() || phone.isEmpty() || horseName.isEmpty() || date.isEmpty() || hour.isEmpty() || comentary.isEmpty()) {
@@ -118,7 +118,7 @@ public class AddBookingActivity extends AppCompatActivity {
 
 
                     //CREAR OBJETO BOOKING
-                    Booking bookingInsert = new Booking(id, name, phone, horseName, date, Integer.parseInt(hour), comentary);
+                    Booking bookingInsert = new Booking(name, phone, horseName, date, Integer.parseInt(hour), comentary);
                     vm.insert(bookingInsert);
 
                     // Ir a la lista

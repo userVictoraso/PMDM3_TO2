@@ -17,7 +17,7 @@ public class EditBookingViewModel extends AndroidViewModel {
 
     private final MutableLiveData<String> mBookingId = new MutableLiveData<>();
 
-    private final LiveData<Booking> mBooking;
+    private LiveData<Booking> mBooking;
 
     public EditBookingViewModel(@NonNull Application application) {
         super(application);
@@ -37,6 +37,10 @@ public class EditBookingViewModel extends AndroidViewModel {
 
     public LiveData<Booking> getmBooking() {
         return mBooking;
+    }
+
+    public void update(Booking booking){
+        mRepository.update(booking);
     }
 
 

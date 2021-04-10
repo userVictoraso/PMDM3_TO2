@@ -48,8 +48,8 @@ public abstract class BookingDatabase extends RoomDatabase {
             dbExecutor.execute(() -> {
                 BookingDao dao = INSTANCE.bookingListDao();
 
-                Booking bookingOne = new Booking("1", "Victor", "777", "Perdigón", "12-12-12", 17, "Hola");
-                Booking bookingTwo = new Booking("2" , "Ismael", "777", "Perdigón", "12-12-12", 17, "Hola");
+                Booking bookingOne = new Booking("Victor", "777", "Perdigón", "12-12-12", 17, "Hola");
+                Booking bookingTwo = new Booking("Ismael", "777", "Perdigón", "12-12-12", 17, "Hola");
 
                 dao.insert(bookingOne);
                 dao.insert(bookingTwo);

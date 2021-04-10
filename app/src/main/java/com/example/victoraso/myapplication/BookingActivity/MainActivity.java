@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 (getApplicationContext(), binding.recyclerView, new RecyclerTouchListener.ClickListener() {
                     @Override
                     public void onClick(View view, int position) {
-                        String id = mViewModel.getBookings().getValue().get(position).getId();
+                        String id = String.valueOf(mViewModel.getBookings().getValue().get(position).getId());
                         Intent intent = new Intent(MainActivity.this, EditBookingActivity.class);
                         intent.putExtra("id", id);
                         startActivity(intent);

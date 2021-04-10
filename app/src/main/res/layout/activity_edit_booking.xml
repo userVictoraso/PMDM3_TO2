@@ -8,12 +8,12 @@
     tools:context=".EditActivity.EditBookingActivity">
 
     <Button
-        android:id="@+id/create_button"
+        android:id="@+id/createButton"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/create_button"
+        android:text="@string/edit_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

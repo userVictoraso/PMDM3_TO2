@@ -8,9 +8,9 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "booking_list")
 public class Booking {
     @NonNull
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    private String id;
+    private int id;
     @NonNull
     @ColumnInfo(name = "horse_rider")
     private String horseRider;
@@ -30,8 +30,7 @@ public class Booking {
     @ColumnInfo(name = "comentary")
     private String comentary;
 
-    public Booking(@NonNull String id, @NonNull String horseRider, @NonNull String phone, @NonNull String horseName, @NonNull String date, int hour, @NonNull String comentary) {
-        this.id = id;
+    public Booking(@NonNull String horseRider, @NonNull String phone, @NonNull String horseName, @NonNull String date, int hour, @NonNull String comentary) {
         this.horseRider = horseRider;
         this.phone = phone;
         this.horseName = horseName;
@@ -40,8 +39,12 @@ public class Booking {
         this.comentary = comentary;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getHorseRider() {

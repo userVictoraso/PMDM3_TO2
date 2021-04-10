@@ -22,8 +22,18 @@ public class BookingRepository {
 
     public LiveData<List<Booking>> getAllBookingLists(){return mBookingLists;}
 
-    public void insert(Booking bookingList) {
-        BookingDatabase.dbExecutor.execute(() -> mBookingListDao.insert(bookingList));
+    public void insert(Booking booking) {
+        BookingDatabase.dbExecutor.execute(() -> mBookingListDao.insert(booking));
+    }
+
+    public void deleteBooking(String id) {
+        BookingDatabase.dbExecutor.execute(
+                () -> mBookingListDao.deleteBooking(id)
+        );
+    }
+
+    public void update(Booking booking) {
+        BookingDatabase.dbExecutor.execute(() -> mBookingListDao.updateBooking(booking));
     }
 
     public LiveData<Booking> getBooking(String id) {

@@ -8,7 +8,7 @@
     tools:context=".AddActivity.AddBookingActivity">
 
     <Button
-        android:id="@+id/create_button"
+        android:id="@+id/createButton"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
