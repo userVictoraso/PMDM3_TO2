@@ -29,9 +29,6 @@ public class EditBookingViewModel extends AndroidViewModel {
     }
 
     public void start(int id) {
-        //if(id.equals(mBookingId.getValue())) {
-         //   return;
-        //}
         mBookingId.setValue(id);
     }
 

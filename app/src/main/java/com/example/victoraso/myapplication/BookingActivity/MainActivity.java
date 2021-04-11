@@ -38,18 +38,9 @@ public class MainActivity extends AppCompatActivity {
         mViewModel = new ViewModelProvider(this, factory)
                 .get(BookingViewModel.class);
 
-        /*mViewModel.getBookings().observe(this, bookings -> {
-                    StringBuilder sb = new StringBuilder();
-                    for (Booking booking : bookings) {
-                        sb.append(booking.getHorseRider()).append("\n");
-                    }
-                    dbText.setText(sb.toString());
-                }
-        );*/
         setUpList();
         setUpFAB();
         setUpUpdate();
-
     }
 
     public void setUpList() {
@@ -91,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         mViewModel.delete(booking);
+                                        Toast.makeText(getApplicationContext(), "Reserva eliminada", Toast.LENGTH_SHORT).show();
                                     }
                                 })
                                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -101,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                                 })
                                 .setTitle("Confirmar")
                                 .setMessage("¿Deseas eliminar la reserva de " + booking.getHorseRider() +
-                                        " para las " + booking.getHour() + "horas con fecha " + booking.getDate() + "?")
+                                        " para las " + booking.getHour() + " horas con fecha " + booking.getDate() + "?")
                                 .create();
                         dialog.show();
                     }

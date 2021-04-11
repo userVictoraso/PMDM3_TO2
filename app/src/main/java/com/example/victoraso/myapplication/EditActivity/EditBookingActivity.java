@@ -118,6 +118,7 @@ public class EditBookingActivity extends AppCompatActivity {
         binding.dateField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Las horas disponibles son de 17 - 20", Toast.LENGTH_SHORT).show();
                 new DatePickerDialog(EditBookingActivity.this, date,
                         myCalendar.get(Calendar.YEAR),
                         myCalendar.get(Calendar.MONTH),

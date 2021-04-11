@@ -16,7 +16,7 @@ import java.util.List;
 
 @Dao
 public interface BookingDao {
-    @Query("SELECT * FROM booking_list")
+    @Query("SELECT * FROM booking_list ORDER BY hour desc")
     LiveData<List<Booking>> getAll();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

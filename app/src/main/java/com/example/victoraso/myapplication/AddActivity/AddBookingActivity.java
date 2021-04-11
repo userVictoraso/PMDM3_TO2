@@ -5,6 +5,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -16,6 +20,7 @@ import com.example.victoraso.myapplication.Model.Booking;
 import com.example.victoraso.myapplication.Utils.Utils;
 import com.example.victoraso.myapplication.databinding.ActivityAddBookingBinding;
 
+import java.net.URLEncoder;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -121,8 +126,28 @@ public class AddBookingActivity extends AppCompatActivity {
                     Booking bookingInsert = new Booking(name, phone, horseName, date, Integer.parseInt(hour), comentary);
                     vm.insert(bookingInsert);
 
+                    //SEND MESSAGE TO WHATSAPP
+                    sendMessage(bookingInsert);
+
                     // Ir a la lista
                     finish();
                 });
+    }
+
+    public void sendMessage(Booking booking) {
+        PackageManager packageManager = getPackageManager();
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        String message = "Caballo: " + booking.getHorseName() + " | Fecha: " + booking.getDate() + " | Hora: " + booking.getHour();
+
+        try {
+            String url = "https://api.whatsapp.com/send?phone=" + "34" + booking.getPhone() +"&text=" + URLEncoder.encode(message, "UTF-8");
+            i.setPackage("com.whatsapp");
+            i.setData(Uri.parse(url));
+            if (i.resolveActivity(packageManager) != null) {
+                startActivity(i);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
