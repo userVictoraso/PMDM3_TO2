@@ -22,7 +22,7 @@ public class Booking {
     private String horseName;
     @NonNull
     @ColumnInfo(name = "date")
-    private String date;
+    private Long date;
     @NonNull
     @ColumnInfo(name = "hour")
     private int hour;
@@ -30,7 +30,7 @@ public class Booking {
     @ColumnInfo(name = "comentary")
     private String comentary;
 
-    public Booking(@NonNull String horseRider, @NonNull String phone, @NonNull String horseName, @NonNull String date, int hour, @NonNull String comentary) {
+    public Booking(@NonNull String horseRider, @NonNull String phone, @NonNull String horseName, @NonNull Long date, int hour, @NonNull String comentary) {
         this.horseRider = horseRider;
         this.phone = phone;
         this.horseName = horseName;
@@ -71,11 +71,11 @@ public class Booking {
         this.horseName = horseName;
     }
 
-    public String getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 

@@ -36,6 +36,7 @@ public class AddBookingActivity extends AppCompatActivity {
         binding = ActivityAddBookingBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        getSupportActionBar().setTitle("Añadir reserva");
 
         ViewModelProvider.AndroidViewModelFactory factory
                 = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication());
@@ -113,17 +114,20 @@ public class AddBookingActivity extends AppCompatActivity {
                     String hour = binding.hourField.getText().toString();
                     String comentary = binding.comentaryField.getText().toString();
 
-                    String id = date.concat(hour);
-
                     // Ignorar acción si hay 0 caracteres
                     if (name.isEmpty() || phone.isEmpty() || horseName.isEmpty() || date.isEmpty() || hour.isEmpty() || comentary.isEmpty()) {
                         Toast.makeText(this, "Rellena los campos", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
+                    if(!Utils.checkPhone(phone)) {
+                        Toast.makeText(this, "Tiene que ser un móvil real", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
 
                     //CREAR OBJETO BOOKING
-                    Booking bookingInsert = new Booking(name, phone, horseName, date, Integer.parseInt(hour), comentary);
+                    Booking bookingInsert = new Booking(name, phone, horseName, Utils.getDateTimestamp(date), Integer.parseInt(hour), comentary);
                     vm.insert(bookingInsert);
 
                     //SEND MESSAGE TO WHATSAPP
@@ -138,7 +142,6 @@ public class AddBookingActivity extends AppCompatActivity {
         PackageManager packageManager = getPackageManager();
         Intent i = new Intent(Intent.ACTION_VIEW);
         String message = "Caballo: " + booking.getHorseName() + " | Fecha: " + booking.getDate() + " | Hora: " + booking.getHour();
-
         try {
             String url = "https://api.whatsapp.com/send?phone=" + "34" + booking.getPhone() +"&text=" + URLEncoder.encode(message, "UTF-8");
             i.setPackage("com.whatsapp");

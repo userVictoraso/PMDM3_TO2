@@ -34,6 +34,7 @@ public class EditBookingActivity extends AppCompatActivity {
         binding = ActivityEditBookingBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        getSupportActionBar().setTitle("Editar reserva");
 
         ViewModelProvider.AndroidViewModelFactory factory
                 = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication());
@@ -80,13 +81,16 @@ public class EditBookingActivity extends AppCompatActivity {
                         return;
                     }
 
+                    if(!Utils.checkPhone(phone)) {
+                        Toast.makeText(this, "Tiene que ser un móvil real", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     //CREAR OBJETO BOOKING
-                    Booking bookingUpdate = new Booking(name, phone, horseName, date, Integer.parseInt(hour), comentary);
+                    Booking bookingUpdate = new Booking(name, phone, horseName, Utils.getDateTimestamp(date), Integer.parseInt(hour), comentary);
                     bookingUpdate.setId(id);
 
                     mViewModel.update(bookingUpdate);
-
-                    Toast.makeText(this, mViewModel.getmBooking().getValue().getHorseName(), Toast.LENGTH_SHORT).show();
 
                     // Ir a la lista
                     finish();
@@ -97,7 +101,7 @@ public class EditBookingActivity extends AppCompatActivity {
         binding.nameRiderField.setText(booking.getHorseRider());
         binding.phoneField.setText(booking.getPhone());
         binding.nameHorseField.setText(booking.getHorseName());
-        binding.dateField.setText(booking.getDate());
+        binding.dateField.setText(Utils.getDateString(booking.getDate()));
         binding.hourField.setText(Integer.toString(booking.getHour()));
         binding.comentaryField.setText(booking.getComentary());
     }
