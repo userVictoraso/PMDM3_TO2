@@ -26,8 +26,8 @@ public class BookingRepository {
         BookingDatabase.dbExecutor.execute(() -> mBookingListDao.insert(booking));
     }
 
-    public LiveData<List<Booking>> search(long date) {
-        return mBookingListDao.getSpecifiedBooking(date);
+    public LiveData<List<Booking>> search(long date, int hour) {
+        return mBookingListDao.getSpecifiedBooking(date, hour);
     }
 
     public void deleteBooking(Booking booking) {

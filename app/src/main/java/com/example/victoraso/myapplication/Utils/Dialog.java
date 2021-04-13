@@ -16,10 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import com.example.victoraso.myapplication.AddActivity.AddBookingActivity;
-import com.example.victoraso.myapplication.BookingActivity.MainActivity;
 import com.example.victoraso.myapplication.R;
-import com.example.victoraso.myapplication.databinding.DialogLayoutBinding;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
@@ -57,7 +54,7 @@ public class Dialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         String date = dateET.getText().toString();
                         String hour = hourET.getText().toString();
-                        listener.applyText(date);
+                        listener.applyText(date, Integer.valueOf(hour));
                     }
                 });
         showCalendar();
@@ -131,6 +128,6 @@ public class Dialog extends AppCompatDialogFragment {
     }
 
     public interface DialogListener {
-        void applyText(String date);
+        void applyText(String date, int hour);
     }
 }

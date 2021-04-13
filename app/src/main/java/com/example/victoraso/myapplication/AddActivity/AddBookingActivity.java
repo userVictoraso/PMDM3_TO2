@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,7 +20,6 @@ import com.example.victoraso.myapplication.Utils.Utils;
 import com.example.victoraso.myapplication.databinding.ActivityAddBookingBinding;
 
 import java.net.URLEncoder;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;

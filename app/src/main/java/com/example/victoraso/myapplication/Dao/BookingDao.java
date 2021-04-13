@@ -19,8 +19,8 @@ public interface BookingDao {
     @Query("SELECT * FROM booking_list ORDER BY date DESC, hour DESC")
     LiveData<List<Booking>> getAll();
 
-    @Query("SELECT * FROM booking_list WHERE date =:date")
-    LiveData<List<Booking>> getSpecifiedBooking(long date);
+    @Query("SELECT * FROM booking_list WHERE date =:date AND hour =:hour")
+    LiveData<List<Booking>> getSpecifiedBooking(long date, int hour);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Booking booking);

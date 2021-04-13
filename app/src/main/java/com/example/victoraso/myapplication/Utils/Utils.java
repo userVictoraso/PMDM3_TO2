@@ -1,8 +1,5 @@
 package com.example.victoraso.myapplication.Utils;
 
-import androidx.room.TypeConverter;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

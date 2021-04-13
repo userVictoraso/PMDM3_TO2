@@ -126,8 +126,8 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
     }
 
     @Override
-    public void applyText(String date) {
-        mViewModel.getSpecifiedBooking(Utils.getDateTimestamp(date)).observe(this, myAdapter::setBookings);
+    public void applyText(String date, int hour) {
+        mViewModel.getSpecifiedBooking(Utils.getDateTimestamp(date), hour).observe(this, myAdapter::setBookings);
         setBackButton();
     }
 

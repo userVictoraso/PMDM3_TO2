@@ -1,7 +1,6 @@
 package com.example.victoraso.myapplication.EditActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
@@ -12,8 +11,6 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.example.victoraso.myapplication.AddActivity.AddBookingActivity;
-import com.example.victoraso.myapplication.BookingActivity.BookingViewModel;
 import com.example.victoraso.myapplication.Model.Booking;
 import com.example.victoraso.myapplication.Utils.Utils;
 import com.example.victoraso.myapplication.databinding.ActivityEditBookingBinding;
