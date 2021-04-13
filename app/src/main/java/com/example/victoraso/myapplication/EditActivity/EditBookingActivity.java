@@ -42,7 +42,7 @@ public class EditBookingActivity extends AppCompatActivity {
                 .get(EditBookingViewModel.class);
 
         String idExtra = getIntent().getStringExtra("id");
-        Toast.makeText(this, "ID: " + id, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "ID: " + idExtra, Toast.LENGTH_LONG).show();
         if (idExtra.equals(null)) {
             finish();
         }

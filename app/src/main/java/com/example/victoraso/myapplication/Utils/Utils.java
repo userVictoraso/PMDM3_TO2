@@ -25,17 +25,6 @@ public class Utils {
     }
 
     /**CONVERT DATE**/
-    public static Date getDate(String dateString) {
-        try {
-            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
-            return date;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**CONVERT DATE**/
     public static Long getDateTimestamp(String stringDate) {
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

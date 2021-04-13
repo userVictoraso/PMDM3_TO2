@@ -1,5 +1,6 @@
 package com.example.victoraso.myapplication.BookingActivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,9 +19,12 @@ import com.example.victoraso.myapplication.Adapter.RecyclerTouchListener;
 import com.example.victoraso.myapplication.AddActivity.AddBookingActivity;
 import com.example.victoraso.myapplication.EditActivity.EditBookingActivity;
 import com.example.victoraso.myapplication.Model.Booking;
+import com.example.victoraso.myapplication.R;
+import com.example.victoraso.myapplication.Utils.Dialog;
+import com.example.victoraso.myapplication.Utils.Utils;
 import com.example.victoraso.myapplication.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Dialog.DialogListener{
 
     private BookingViewModel mViewModel;
     ActivityMainBinding binding;
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         getSupportActionBar().setTitle("Reservas");
+        binding.backButton.setVisibility(View.GONE);
 
         ViewModelProvider.AndroidViewModelFactory factory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication());
@@ -42,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         setUpList();
         setUpFAB();
         setUpUpdate();
+
+        //TODO: SEARCH FILTER
     }
 
     public void setUpList() {
@@ -94,10 +103,49 @@ public class MainActivity extends AppCompatActivity {
                                 })
                                 .setTitle("Confirmar")
                                 .setMessage("¿Deseas eliminar la reserva de " + booking.getHorseRider() +
-                                        " para las " + booking.getHour() + " horas con fecha " + booking.getDate() + "?")
+                                        " para las " + booking.getHour() + " horas con fecha " + Utils.getDateString(booking.getDate()) + "?")
                                 .create();
                         dialog.show();
                     }
                 }));
     }
+
+    private void openDateHourDialog(){
+        Dialog dialog = new Dialog();
+        dialog.show(getSupportFragmentManager(), "Buscar");
+    }
+
+    private void setBackButton() {
+        binding.backButton.setVisibility(View.VISIBLE);
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setUpList();
+            }
+        });
+    }
+
+    @Override
+    public void applyText(String date) {
+        mViewModel.getSpecifiedBooking(Utils.getDateTimestamp(date)).observe(this, myAdapter::setBookings);
+        setBackButton();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.search:
+                openDateHourDialog();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

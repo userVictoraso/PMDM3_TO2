@@ -48,14 +48,12 @@ public class AddBookingActivity extends AppCompatActivity {
         setupCreateButton(vm);
     }
 
-    //TODO: ESTO SE PODRÏA PONER EN UNA MISMA CLASE Y RECICLARLO EN EL EDIT
     private void showCalendar() {
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -141,7 +139,7 @@ public class AddBookingActivity extends AppCompatActivity {
     public void sendMessage(Booking booking) {
         PackageManager packageManager = getPackageManager();
         Intent i = new Intent(Intent.ACTION_VIEW);
-        String message = "Caballo: " + booking.getHorseName() + " | Fecha: " + booking.getDate() + " | Hora: " + booking.getHour();
+        String message = "Caballo: " + booking.getHorseName() + " | Fecha: " + Utils.getDateString(booking.getDate()) + " | Hora: " + booking.getHour();
         try {
             String url = "https://api.whatsapp.com/send?phone=" + "34" + booking.getPhone() +"&text=" + URLEncoder.encode(message, "UTF-8");
             i.setPackage("com.whatsapp");

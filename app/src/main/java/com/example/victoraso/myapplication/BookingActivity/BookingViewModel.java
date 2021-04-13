@@ -27,6 +27,9 @@ public class BookingViewModel extends AndroidViewModel {
         return mBookingLists;
     }
 
+    public LiveData<List<Booking>> getSpecifiedBooking(long date) {
+        return mRepository.search(date);
+    }
     public void insert(Booking booking){
         mRepository.insert(booking);
     }
