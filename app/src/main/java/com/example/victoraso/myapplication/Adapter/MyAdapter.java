@@ -30,7 +30,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
         notifyDataSetChanged();
     }
 
-
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -54,6 +54,10 @@ public class Dialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         String date = dateET.getText().toString();
                         String hour = hourET.getText().toString();
+                        if (hour.equals("")) {
+                            Toast.makeText(getContext(), "Selecciona una hora", Toast.LENGTH_LONG).show();
+                            return;
+                        }
                         listener.applyText(date, Integer.valueOf(hour));
                     }
                 });

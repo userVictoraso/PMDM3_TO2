@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
     ActivityMainBinding binding;
 
     MyAdapter myAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
         View view = binding.getRoot();
         setContentView(view);
         getSupportActionBar().setTitle("Reservas");
-        binding.backButton.setVisibility(View.GONE);
 
         ViewModelProvider.AndroidViewModelFactory factory =
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication());
@@ -49,11 +47,10 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
         setUpList();
         setUpFAB();
         setUpUpdate();
-
-        //TODO: SEARCH FILTER
     }
 
     public void setUpList() {
+        binding.backButton.setVisibility(View.INVISIBLE);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         binding.recyclerView.setLayoutManager(llm);

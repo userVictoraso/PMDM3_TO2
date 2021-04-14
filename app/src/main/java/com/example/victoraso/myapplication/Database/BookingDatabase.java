@@ -10,6 +10,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.victoraso.myapplication.Dao.BookingDao;
 import com.example.victoraso.myapplication.Model.Booking;
+import com.example.victoraso.myapplication.Utils.Utils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -48,11 +49,11 @@ public abstract class BookingDatabase extends RoomDatabase {
             dbExecutor.execute(() -> {
                 BookingDao dao = INSTANCE.bookingListDao();
 
-                Booking bookingOne = new Booking("Victor", "777", "Perdigón", (long) 2118213016, 20, "Hola");
-                Booking bookingTwo = new Booking("Ismael", "777", "Perdigón", (long) 1118263016, 18, "Hola");
-                Booking bookingThree = new Booking("Bea", "777", "Perdigón", (long) 1718223016, 17, "Hola");
-                Booking bookingFour = new Booking("Sonia", "777", "Perdigón", (long) 1618215016, 19, "Hola");
-                Booking bookingFive = new Booking("Juan", "777", "Perdigón", (long) 1918283016, 20, "Hola");
+                Booking bookingOne = new Booking("Victor", "634895012", "Perdigón", Utils.getDateTimestamp("19/04/2021"), 20, "Hola");
+                Booking bookingTwo = new Booking("Ismael", "634234012", "ColaCao", Utils.getDateTimestamp("15/04/2021"), 18, "Hola");
+                Booking bookingThree = new Booking("Bea", "634878912", "Galleta", Utils.getDateTimestamp("17/04/2021"), 17, "Hola");
+                Booking bookingFour = new Booking("Sonia", "636495012", "Bola", Utils.getDateTimestamp("12/04/2021"), 20, "Hola");
+                Booking bookingFive = new Booking("Juan", "634895187", "Rápido", Utils.getDateTimestamp("14/04/2021"), 17, "Hola");
 
 
                 dao.insert(bookingOne);
