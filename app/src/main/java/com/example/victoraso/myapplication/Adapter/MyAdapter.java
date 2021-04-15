@@ -53,8 +53,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
                 toast.show();
             }
         });
-
-
     }
 
     @Override
