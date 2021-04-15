@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
         myAdapter = new MyAdapter(this, null);
         binding.recyclerView.setAdapter(myAdapter);
 
+        mViewModel.setmBookingLists();
         mViewModel.getBookings().observe(this, myAdapter::setBookings);
     }
 
@@ -124,7 +125,6 @@ public class MainActivity extends AppCompatActivity implements Dialog.DialogList
 
     @Override
     public void applyText(String date, int hour) {
-        //TODO: Cuando se clique en el item buscado, que se abra ese mismo item, no el primero del Recycler
         mViewModel.getSpecifiedBooking(Utils.getDateTimestamp(date), hour).observe(this, myAdapter::setBookings);
         setBackButton();
     }

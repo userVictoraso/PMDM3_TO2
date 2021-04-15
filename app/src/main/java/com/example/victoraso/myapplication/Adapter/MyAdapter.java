@@ -20,7 +20,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
     Context c;
     List<Booking> bookings;
 
-    public MyAdapter(Context c, ArrayList<Booking> bookings) {
+    public MyAdapter(Context c, List<Booking> bookings) {
         this.c = c;
         this.bookings = bookings;
     }
@@ -47,6 +47,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
                 Context context = c.getApplicationContext();
                 CharSequence text = bookings.get(position).getHorseRider() + " - " + bookings.get(position).getHorseName() +
                         " - " + bookings.get(position).getPhone();
+
                 int duration = Toast.LENGTH_LONG;
 
                 Toast toast = Toast.makeText(context, text, duration);

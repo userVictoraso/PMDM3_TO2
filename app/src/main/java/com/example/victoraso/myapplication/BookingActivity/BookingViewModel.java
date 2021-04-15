@@ -15,11 +15,15 @@ public class BookingViewModel extends AndroidViewModel {
 
     private final BookingRepository mRepository;
 
-    private final LiveData<List<Booking>> mBookingLists;
+    private LiveData<List<Booking>> mBookingLists;
 
     public BookingViewModel(@NonNull Application application) {
         super(application);
         mRepository = new BookingRepository(application);
+        mBookingLists = mRepository.getAllBookingLists();
+    }
+
+    public void setmBookingLists() {
         mBookingLists = mRepository.getAllBookingLists();
     }
 
@@ -28,7 +32,8 @@ public class BookingViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Booking>> getSpecifiedBooking(long date, int hour) {
-        return mRepository.search(date, hour);
+        mBookingLists = mRepository.search(date, hour);
+        return mBookingLists;
     }
     public void insert(Booking booking){
         mRepository.insert(booking);
