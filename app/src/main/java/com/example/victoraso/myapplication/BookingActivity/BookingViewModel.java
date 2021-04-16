@@ -39,6 +39,10 @@ public class BookingViewModel extends AndroidViewModel {
         mRepository.insert(booking);
     }
 
+    public LiveData<Integer> checkIfReserved(long date, int hour) {
+        return mRepository.checkIfReserved(date, hour);
+    }
+
     public void delete(Booking booking) {
         mRepository.deleteBooking(booking);
     }

@@ -30,6 +30,10 @@ public class BookingRepository {
         return mBookingListDao.getSpecifiedBooking(date, hour);
     }
 
+    public LiveData<Integer> checkIfReserved(long date, int hour) {
+        return mBookingListDao.checkIfReserved(date, hour);
+    }
+
     public void deleteBooking(Booking booking) {
         BookingDatabase.dbExecutor.execute(
                 () -> mBookingListDao.deleteBooking(booking)

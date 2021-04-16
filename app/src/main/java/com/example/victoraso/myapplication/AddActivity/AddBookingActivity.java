@@ -1,6 +1,7 @@
 package com.example.victoraso.myapplication.AddActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.DatePickerDialog;
@@ -27,6 +28,7 @@ import java.util.Locale;
 public class AddBookingActivity extends AppCompatActivity {
     private final Calendar myCalendar = Calendar.getInstance();
     ActivityAddBookingBinding binding;
+    private int bookingExists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,28 +112,50 @@ public class AddBookingActivity extends AppCompatActivity {
                     String hour = binding.hourField.getText().toString();
                     String comentary = binding.comentaryField.getText().toString();
 
-                    // Ignorar acción si hay 0 caracteres
+                    //CHECK IF FIELDS ARE EMPTY
                     if (name.isEmpty() || phone.isEmpty() || horseName.isEmpty() || date.isEmpty() || hour.isEmpty() || comentary.isEmpty()) {
                         Toast.makeText(this, "Rellena los campos", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
+                    //CHECK IF PHONE IS WELLWRITED
                     if(!Utils.checkPhone(phone)) {
                         Toast.makeText(this, "Tiene que ser un móvil real", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
+                    //CHECK IF EXISTS SAME DATETIME BOOKING
+                    vm.checkIfReserved(Utils.getDateTimestamp(date), Integer.parseInt(hour)).observe(this, integer -> {
+                        setBookingExists(integer);
 
-                    //CREAR OBJETO BOOKING
-                    Booking bookingInsert = new Booking(name, phone, horseName, Utils.getDateTimestamp(date), Integer.parseInt(hour), comentary);
-                    vm.insert(bookingInsert);
+                        if(getBookingExists() == 1) {
+                            Toast.makeText(this, "Ya hay una reserva con la misma fecha", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                    //SEND MESSAGE TO WHATSAPP
-                    sendMessage(bookingInsert);
+                        /** La creación del objeto y la inserción se harían dentro del observer, ya que se ejecuta en segundo plano
+                         * y de estar fuera el código de abajo se ejecutaría al mismo tiempo que el observer, por lo que no se setea
+                         * correctamente el valor del método setBookingExists(int) **/
 
-                    // Ir a la lista
-                    finish();
+                        //CREATE BOOKING OBJECT
+                        Booking bookingInsert = new Booking(name, phone, horseName, Utils.getDateTimestamp(date), Integer.parseInt(hour), comentary);
+                        vm.insert(bookingInsert);
+
+                        //SEND MESSAGE TO WHATSAPP
+                        sendMessage(bookingInsert);
+
+                        //BACK TO LIST
+                        finish();
+                    });
                 });
+    }
+
+    public int getBookingExists() {
+        return bookingExists;
+    }
+
+    public void setBookingExists(int bookingExists) {
+        this.bookingExists = bookingExists;
     }
 
     public void sendMessage(Booking booking) {

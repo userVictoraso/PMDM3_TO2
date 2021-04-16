@@ -22,6 +22,9 @@ public interface BookingDao {
     @Query("SELECT * FROM booking_list WHERE date =:date AND hour =:hour")
     LiveData<List<Booking>> getSpecifiedBooking(long date, int hour);
 
+    @Query("SELECT COUNT(*) FROM booking_list WHERE date =:date AND hour =:hour")
+    LiveData<Integer> checkIfReserved(long date, int hour);
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Booking booking);
 
