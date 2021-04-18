@@ -26,6 +26,7 @@ public abstract class BookingDatabase extends RoomDatabase {
 
     private static final int THREADS = 4;
 
+    /**Declaramos un ExecutorService para ejecutar las operaciones de bases de datos en otros hilos de trabajo y por ende no entorpecer la UI.**/
     public static final ExecutorService dbExecutor = Executors.newFixedThreadPool(THREADS);
 
     public static BookingDatabase getInstance(final Context context) {

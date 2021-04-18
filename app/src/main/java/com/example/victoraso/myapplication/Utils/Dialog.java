@@ -127,7 +127,7 @@ public class Dialog extends AppCompatDialogFragment {
             listener = (DialogListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() +
-                    "mus implement DialogListener");
+                    "must implement DialogListener");
         }
     }
 
