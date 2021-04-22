@@ -128,7 +128,6 @@ public class AddBookingActivity extends AppCompatActivity {
                     vm.checkIfReserved(Utils.getDateTimestamp(date), Integer.parseInt(hour)).observe(this, integer -> {
                         setBookingExists(integer);
 
-                        //TODO: que solo entre aqui la primera vez
                         if(getBookingExists() == 1) {
                             Toast.makeText(this, "Ya hay una reserva con la misma fecha", Toast.LENGTH_SHORT).show();
                             return;
@@ -147,6 +146,7 @@ public class AddBookingActivity extends AppCompatActivity {
 
                         //BACK TO LIST
                         finish();
+                        return;
                     });
                 });
     }
